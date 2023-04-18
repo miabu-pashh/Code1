@@ -1,10 +1,15 @@
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.*;  
 
-public class Solution{
+public class SolutionPart2 {
     public static void main(String []args){
         ArrayList<Integer> calories=new ArrayList<Integer>();
+        ArrayList<Integer> sol=new ArrayList<Integer>();
+
         int maxSum=0;
         try{
             Scanner sc=new Scanner(new File("Day1/input.txt"));
@@ -15,9 +20,8 @@ public class Solution{
                     for (Integer i: calories){
                         total+=i;
                     }
-                    if(total>maxSum){
-                        maxSum=total;
-                    }
+                    System.out.println("adding total to sol , the total is : "+total);
+                    sol.add(total);
                     calories.clear();
 
                 }
@@ -25,6 +29,19 @@ public class Solution{
                     calories.add(Integer.parseInt(line));
                 }
             }
+            // System.out.println("before sorting");
+            // for(int i:sol){
+            //     System.out.print(i+" ");
+            // }
+            Collections.sort(sol);
+            for(int i=sol.size()-1;i>=sol.size()-3;i--){
+                maxSum+=sol.get(i);
+            }
+            // System.out.println("after sorting");
+
+            // for(int i:sol){
+            //     System.out.print(i+" ");
+            // }
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -32,5 +49,5 @@ public class Solution{
         System.out.println(maxSum);
 
     }
-
+    
 }
